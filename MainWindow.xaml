@@ -19,7 +19,14 @@
                 </StackPanel>
             </Border>
             <StackPanel Height="410" Width="220" Margin="10" HorizontalAlignment="Center">
-
+                <Button Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen"></Button>
+                <Button Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen"></Button>
+                <Button Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen"></Button>
+                <Label Width="135" Height="45" BorderBrush="Black" BorderThickness="4"/>
+                <WrapPanel Height="120" Margin="5">
+                    <Label Margin="20" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
+                    <Label Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
+                </WrapPanel>
             </StackPanel>
             <Border BorderBrush="Black" BorderThickness="4">
                 <StackPanel Height="414" Width="250" HorizontalAlignment="Right" Background="Beige">
