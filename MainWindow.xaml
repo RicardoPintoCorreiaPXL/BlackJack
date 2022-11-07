@@ -6,7 +6,23 @@
         xmlns:local="clr-namespace:Blackjack"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="DarkGreen">
+        <WrapPanel Margin="5">
+            <Border BorderBrush="Black" BorderThickness="4">
+                <StackPanel Height="414" Width="250" HorizontalAlignment="Left" Background="Beige" >
+
+                </StackPanel>
+            </Border>
+            <StackPanel Height="410" Width="220" Margin="10" HorizontalAlignment="Center">
+                
+            </StackPanel>
+            <Border BorderBrush="Black" BorderThickness="4">
+                <StackPanel Height="414" Width="250" HorizontalAlignment="Right" Background="Beige">
+
+                </StackPanel>
+            </Border>
+            
+        </WrapPanel>
 
     </Grid>
 </Window>
