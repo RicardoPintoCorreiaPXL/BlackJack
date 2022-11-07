@@ -19,9 +19,9 @@
                 </StackPanel>
             </Border>
             <StackPanel Height="410" Width="220" Margin="10" HorizontalAlignment="Center">
-                <Button x:Name="dealButton" Content="DEAL!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" FontFamily="Arial Black"></Button>
-                <Button x:Name="hitButton" FontFamily="Arial Black" Content="HIT!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen"></Button>
-                <Button x:Name="standButton" FontFamily="Arial Black" Content="STAND!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen"></Button>
+                <Button x:Name="dealButton" Content="DEAL!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" FontFamily="Arial Black" Click="dealButton_Click"></Button>
+                <Button x:Name="hitButton" FontFamily="Arial Black" Content="HIT!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="hitButton_Click"></Button>
+                <Button x:Name="standButton" FontFamily="Arial Black" Content="STAND!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="standButton_Click"></Button>
                 <Label Name="winConditionLabel" Visibility="Hidden" Width="135" Height="45" BorderBrush="Black" BorderThickness="4"/>
                 <WrapPanel Height="120" Margin="5">
                     <Label Name="playerLabel" FontSize="20" FontFamily="Arial Black" Content="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>

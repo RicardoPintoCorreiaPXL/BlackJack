@@ -24,5 +24,40 @@ namespace Blackjack
         {
             InitializeComponent();
         }
+
+        private void dealButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void hitButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void standButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void calculationOfCards(int points, int card)
+        {
+
+        }
+
+        private void CheckWhoWon(int playerPoint, int computerPoints)
+        {
+
+        }
+
+        private void getCard()
+        {
+
+        }
+
+        private void removeCard(int card)
+        {
+
+        }
     }
 }
