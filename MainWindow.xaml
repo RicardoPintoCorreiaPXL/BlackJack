@@ -10,18 +10,28 @@
         <WrapPanel Margin="5">
             <Border BorderBrush="Black" BorderThickness="4">
                 <StackPanel Height="414" Width="250" HorizontalAlignment="Left" Background="Beige" >
-
+                    <Border Margin="20" BorderBrush="Black" BorderThickness="4">
+                        <TextBlock Height="200" Width="200" Background="Wheat"></TextBlock>
+                    </Border>
+                    <Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">
+                        <Image Height="85"></Image>
+                    </Border>
                 </StackPanel>
             </Border>
             <StackPanel Height="410" Width="220" Margin="10" HorizontalAlignment="Center">
-                
+
             </StackPanel>
             <Border BorderBrush="Black" BorderThickness="4">
                 <StackPanel Height="414" Width="250" HorizontalAlignment="Right" Background="Beige">
-
+                    <Border Margin="20" BorderBrush="Black" BorderThickness="4">
+                        <TextBlock Height="200" Width="200" Background="Wheat"></TextBlock>
+                    </Border>
+                    <Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">
+                        <Image Height="85"></Image>
+                    </Border>
                 </StackPanel>
             </Border>
-            
+
         </WrapPanel>
 
     </Grid>
