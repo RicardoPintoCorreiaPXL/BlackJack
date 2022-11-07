@@ -11,30 +11,30 @@
             <Border BorderBrush="Black" BorderThickness="4">
                 <StackPanel Height="414" Width="250" HorizontalAlignment="Left" Background="Beige" >
                     <Border Margin="20" BorderBrush="Black" BorderThickness="4">
-                        <TextBlock Height="200" Width="200" Background="Wheat"></TextBlock>
+                        <TextBlock x:Name="playerTextblock" Height="200" Width="200" Background="Wheat"></TextBlock>
                     </Border>
                     <Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">
-                        <Image Height="85"></Image>
+                        <Image x:Name="playerCardImage" Margin="0,-4,0,-4"/>
                     </Border>
                 </StackPanel>
             </Border>
             <StackPanel Height="410" Width="220" Margin="10" HorizontalAlignment="Center">
-                <Button Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen"></Button>
-                <Button Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen"></Button>
-                <Button Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen"></Button>
-                <Label Width="135" Height="45" BorderBrush="Black" BorderThickness="4"/>
+                <Button x:Name="dealButton" Content="DEAL!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" FontFamily="Arial Black"></Button>
+                <Button x:Name="hitButton" FontFamily="Arial Black" Content="HIT!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen"></Button>
+                <Button x:Name="standButton" FontFamily="Arial Black" Content="STAND!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen"></Button>
+                <Label Name="winConditionLabel" Visibility="Hidden" Width="135" Height="45" BorderBrush="Black" BorderThickness="4"/>
                 <WrapPanel Height="120" Margin="5">
-                    <Label Margin="20" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
-                    <Label Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
+                    <Label Name="playerLabel" FontSize="20" FontFamily="Arial Black" Content="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
+                    <Label Name="commputerLabel" FontSize="20" FontFamily="Arial Black" Content="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
                 </WrapPanel>
             </StackPanel>
             <Border BorderBrush="Black" BorderThickness="4">
                 <StackPanel Height="414" Width="250" HorizontalAlignment="Right" Background="Beige">
                     <Border Margin="20" BorderBrush="Black" BorderThickness="4">
-                        <TextBlock Height="200" Width="200" Background="Wheat"></TextBlock>
+                        <TextBlock x:Name="computerTextblock" Height="200" Width="200" Background="Wheat"></TextBlock>
                     </Border>
                     <Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">
-                        <Image Height="85"></Image>
+                        <Image x:Name="computerCardImage" Margin="0,1,0,0"/>
                     </Border>
                 </StackPanel>
             </Border>
