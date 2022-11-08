@@ -52,16 +52,10 @@ namespace Blackjack
                     switch (p)
                     {
                         case 0:
-                            playerTextbox.AppendText(GetCardName());
-                            playerTextbox.AppendText(Environment.NewLine);
-                            playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
-                            playerLabel.Content = playerPoints.ToString();
+                            PlayerStatistics();
                             break;
                         case 1:
-                            computerTextbox.AppendText(GetCardName());
-                            computerTextbox.AppendText(Environment.NewLine);
-                            computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
-                            commputerLabel.Content = computerPoints.ToString();
+                            ComputerStatistics();
                             break;
                     } 
                 }
@@ -70,15 +64,26 @@ namespace Blackjack
             standButton.IsEnabled = true;
         }
 
-        private void hitButton_Click(object sender, RoutedEventArgs e)
+        private void PlayerStatistics()
         {
-            
-            GetCard();
-            
             playerTextbox.AppendText(GetCardName());
             playerTextbox.AppendText(Environment.NewLine);
             playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
             playerLabel.Content = playerPoints.ToString();
+        } 
+
+        private void ComputerStatistics()
+        {
+            computerTextbox.AppendText(GetCardName());
+            computerTextbox.AppendText(Environment.NewLine);
+            computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
+            commputerLabel.Content = computerPoints.ToString();
+        }
+
+        private void hitButton_Click(object sender, RoutedEventArgs e)
+        {
+            GetCard();
+            PlayerStatistics();
             bustCheck(playerPoints);
         }
 
@@ -100,14 +105,9 @@ namespace Blackjack
         private void computerPlays()
         {
             while (computerPoints < 17)
-            {
-                
+            {               
                 GetCard();
-                
-                computerTextbox.AppendText(GetCardName());
-                computerTextbox.AppendText(Environment.NewLine);
-                computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
-                commputerLabel.Content = computerPoints.ToString();
+                ComputerStatistics();
                 bustCheck(computerPoints);
             }
             CheckWhoWon();
