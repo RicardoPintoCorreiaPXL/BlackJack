@@ -64,7 +64,47 @@ namespace Blackjack
 
         private void BuildDeck()
         {
+            string cardName = "";
+            for (int i = 0; i < 4; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        cardName = "Spade";
+                        break;
+                    case 1:
+                        cardName = "Heart";
+                        break;
+                    case 2:
+                        cardName = "Clover";
+                        break;
+                    case 3:
+                        cardName = "Diamond";
+                        break;
+                }
+                deck.Add(new List<string>(2) { $"{cardName}", "Ace" });
+                for (int value = 0; value < 9; value++)
+                {
+                    deck.Add(new List<string>(2) { $"{cardName}", $"{value + 2}" });
+                }
+                deck.Add(new List<string>(2) { $"{cardName}", "Jack" });
+                deck.Add(new List<string>(2) { $"{cardName}", "Queen" });
+                deck.Add(new List<string>(2) { $"{cardName}", "King" });
+            }
+            //TestBuiltCardDeck();
+        }
 
+        private void TestBuiltCardDeck()
+        {
+            string listOfCards = "";
+            for (int i = 0; i < deck.Count; i++)
+            {
+                for (int x = 0; x < 2; x++)
+                {
+                    listOfCards += deck[i][x].ToString() + " ";
+                }
+            }
+            MessageBox.Show(listOfCards);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -75,6 +115,7 @@ namespace Blackjack
             //maak methode aan met dubbele for lussen om kaarten in list te steken
             //deck.Add(new List<string>(2) {"Spade", "Ace"});
             //deck[0][0];
+            BuildDeck();
         }
     }
 }
