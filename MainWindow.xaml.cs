@@ -24,8 +24,8 @@ namespace Blackjack
         private List<List<string>> deck;
         private Random rnd;
         private List<string> card;
-        private int playerPoints = 0;
-        private int computerPoints = 0;
+        private int playerPoints;
+        private int computerPoints;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +34,14 @@ namespace Blackjack
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
             dealButton.IsEnabled = false;
+            winConditionLabel.Visibility = Visibility.Hidden;
+            if (!(playerTextbox == null))
+            {
+                playerTextbox.Clear();
+                computerTextbox.Clear();
+            }
+            playerPoints = 0;
+            computerPoints = 0;
             for (int p = 0; p < 2; p++)
             {
                 for (int i = 0; i < 2; i++)
@@ -50,11 +58,13 @@ namespace Blackjack
                             playerTextbox.AppendText(cardName);
                             playerTextbox.AppendText(Environment.NewLine);
                             playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
+                            playerLabel.Content = playerPoints.ToString();
                             break;
                         case 1:
                             computerTextbox.AppendText(cardName);
                             computerTextbox.AppendText(Environment.NewLine);
                             computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
+                            commputerLabel.Content = computerPoints.ToString();
                             break;
                     } 
                 }
@@ -65,12 +75,49 @@ namespace Blackjack
 
         private void hitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            string cardName = "";
+            GetCard();
+            for (int x = 0; x < card.Count; x++)
+            {
+                cardName += $"{card[x]} ";
+            }
+            playerTextbox.AppendText(cardName);
+            playerTextbox.AppendText(Environment.NewLine);
+            playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
+            playerLabel.Content = playerPoints.ToString();
+            bustCheck(playerPoints);
         }
 
         private void standButton_Click(object sender, RoutedEventArgs e)
         {
+            computerPlays();
+        }
 
+        private void computerPlays()
+        {
+            while (computerPoints < 17)
+            {
+                string cardName = "";
+                GetCard();
+                for (int x = 0; x < card.Count; x++)
+                {
+                    cardName += $"{card[x]} ";
+                }
+                computerTextbox.AppendText(cardName);
+                computerTextbox.AppendText(Environment.NewLine);
+                computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
+                commputerLabel.Content = computerPoints.ToString();
+                bustCheck(computerPoints);
+            }
+            CheckWhoWon();
+        }
+
+        private void bustCheck(int points)
+        {
+            if (points > 21)
+            {
+                CheckWhoWon();
+            }
         }
 
         private int CalculationOfCards(int points, string card)
@@ -96,9 +143,23 @@ namespace Blackjack
             }
         }
 
-        private void CheckWhoWon(int playerPoint, int computerPoints)
+        private void CheckWhoWon()
         {
-
+            dealButton.IsEnabled = true;
+            hitButton.IsEnabled = false;
+            standButton.IsEnabled=false;
+            winConditionLabel.Visibility = Visibility.Visible;
+            if (playerPoints == computerPoints)
+            {
+                winConditionLabel.Content = "TIE!";
+            }
+            else if (playerPoints > computerPoints && playerPoints < 22 || computerPoints > 21)
+            {
+                winConditionLabel.Content = "WON!";
+            } else
+            {
+                winConditionLabel.Content = "LOST";
+            }
         }
 
         private void GetCard()
