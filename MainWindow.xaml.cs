@@ -42,16 +42,18 @@ namespace Blackjack
                     GetCard();
                     for (int x = 0; x < card.Count; x++)
                     {
-                        cardName += card[x];
+                        cardName += $"{card[x]} ";
                     }
                     switch (p)
                     {
                         case 0:
                             playerTextbox.AppendText(cardName);
+                            playerTextbox.AppendText(Environment.NewLine);
                             playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
                             break;
                         case 1:
                             computerTextbox.AppendText(cardName);
+                            computerTextbox.AppendText(Environment.NewLine);
                             computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
                             break;
                     } 
