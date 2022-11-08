@@ -46,22 +46,19 @@ namespace Blackjack
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    string cardName = "";
+                    
                     GetCard();
-                    for (int x = 0; x < card.Count; x++)
-                    {
-                        cardName += $"{card[x]} ";
-                    }
+                    
                     switch (p)
                     {
                         case 0:
-                            playerTextbox.AppendText(cardName);
+                            playerTextbox.AppendText(GetCardName());
                             playerTextbox.AppendText(Environment.NewLine);
                             playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
                             playerLabel.Content = playerPoints.ToString();
                             break;
                         case 1:
-                            computerTextbox.AppendText(cardName);
+                            computerTextbox.AppendText(GetCardName());
                             computerTextbox.AppendText(Environment.NewLine);
                             computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
                             commputerLabel.Content = computerPoints.ToString();
@@ -75,13 +72,10 @@ namespace Blackjack
 
         private void hitButton_Click(object sender, RoutedEventArgs e)
         {
-            string cardName = "";
+            
             GetCard();
-            for (int x = 0; x < card.Count; x++)
-            {
-                cardName += $"{card[x]} ";
-            }
-            playerTextbox.AppendText(cardName);
+            
+            playerTextbox.AppendText(GetCardName());
             playerTextbox.AppendText(Environment.NewLine);
             playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
             playerLabel.Content = playerPoints.ToString();
@@ -93,17 +87,24 @@ namespace Blackjack
             computerPlays();
         }
 
+        private string GetCardName()
+        {
+            string cardName = "";
+            for (int x = 0; x < card.Count; x++)
+            {
+                cardName += $"{card[x]} ";
+            }
+            return cardName;
+        }
+
         private void computerPlays()
         {
             while (computerPoints < 17)
             {
-                string cardName = "";
+                
                 GetCard();
-                for (int x = 0; x < card.Count; x++)
-                {
-                    cardName += $"{card[x]} ";
-                }
-                computerTextbox.AppendText(cardName);
+                
+                computerTextbox.AppendText(GetCardName());
                 computerTextbox.AppendText(Environment.NewLine);
                 computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
                 commputerLabel.Content = computerPoints.ToString();
