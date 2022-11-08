@@ -33,6 +33,7 @@ namespace Blackjack
 
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
+            BuildDeck();
             dealButton.IsEnabled = false;
             winConditionLabel.Visibility = Visibility.Hidden;
             if (!(playerTextbox == null))
@@ -185,6 +186,10 @@ namespace Blackjack
 
         private void BuildDeck()
         {
+            if (!(deck == null))
+            {
+                deck.Clear();
+            }
             string cardName = "";
             for (int i = 0; i < 4; i++)
             {
@@ -238,7 +243,7 @@ namespace Blackjack
             //maak methode aan met dubbele for lussen om kaarten in list te steken
             //deck.Add(new List<string>(2) {"Spade", "Ace"});
             //deck[0][0];
-            BuildDeck();
+            //BuildDeck(); move to deal
             // random kaart
             rnd = new Random();
 
