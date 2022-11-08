@@ -20,6 +20,8 @@ namespace Blackjack
     /// </summary>
     public partial class MainWindow : Window
     {
+        //private List<string> deck;
+        private List<List<string>> deck;
         public MainWindow()
         {
             InitializeComponent();
@@ -40,7 +42,7 @@ namespace Blackjack
 
         }
 
-        private void calculationOfCards(int points, int card)
+        private void CalculationOfCards(int points, int card)
         {
 
         }
@@ -50,14 +52,29 @@ namespace Blackjack
 
         }
 
-        private void getCard()
+        private void GetCard()
         {
 
         }
 
-        private void removeCard(int card)
+        private void RemoveCard(int card)
         {
 
+        }
+
+        private void BuildDeck()
+        {
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //deck = new List<string>(52) { "Spade00", "Spade02", "Spade03", "Spade04", "Spade05", "Spade06", "Spade07", "Spade08", "Spade09", "Spade10",
+            //"SpadeJJ", "SpadeQQ", "SpadeKK"};
+            deck = new List<List<string>>(52) {};
+            //maak methode aan met dubbele for lussen om kaarten in list te steken
+            //deck.Add(new List<string>(2) {"Spade", "Ace"});
+            //deck[0][0];
         }
     }
 }
