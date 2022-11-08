@@ -22,6 +22,10 @@ namespace Blackjack
     {
         //private List<string> deck;
         private List<List<string>> deck;
+        private Random rnd;
+        private List<string> card;
+        private int playerPoints = 0;
+        private int computerPoints = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +33,32 @@ namespace Blackjack
 
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
-
+            dealButton.IsEnabled = false;
+            for (int p = 0; p < 2; p++)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    string cardName = "";
+                    GetCard();
+                    for (int x = 0; x < card.Count; x++)
+                    {
+                        cardName += card[x];
+                    }
+                    switch (p)
+                    {
+                        case 0:
+                            playerTextbox.AppendText(cardName);
+                            playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
+                            break;
+                        case 1:
+                            computerTextbox.AppendText(cardName);
+                            computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
+                            break;
+                    } 
+                }
+            }
+            hitButton.IsEnabled = true;
+            standButton.IsEnabled = true;
         }
 
         private void hitButton_Click(object sender, RoutedEventArgs e)
@@ -42,9 +71,27 @@ namespace Blackjack
 
         }
 
-        private void CalculationOfCards(int points, int card)
+        private int CalculationOfCards(int points, string card)
         {
-
+            int value = 0;
+            switch (card)
+            {
+                case "Ace":
+                    //to be changed in future
+                    value = 1;
+                    return points + value;
+                    break;
+                case "Jack":
+                case "Queen":
+                case "King":
+                    value = 10;
+                    return points + value;
+                    break ;
+                default:
+                    value = Int32.Parse(card);
+                    return points + value;
+                    break;
+            }
         }
 
         private void CheckWhoWon(int playerPoint, int computerPoints)
@@ -54,12 +101,22 @@ namespace Blackjack
 
         private void GetCard()
         {
-
+            if (!(card == null))
+            {
+                card.Clear();
+            }
+            
+            int rint = rnd.Next(deck.Count);
+            card.Add(deck[rint][0]);
+            card.Add(deck[rint][1]);
+            //MessageBox.Show($"{card[0]},{card[1]}");
+            RemoveCard(rint);
         }
 
         private void RemoveCard(int card)
         {
-
+            deck.RemoveAt(card);
+            //TestBuiltCardDeck();
         }
 
         private void BuildDeck()
@@ -94,6 +151,7 @@ namespace Blackjack
             //TestBuiltCardDeck();
         }
 
+        //Testing methode
         private void TestBuiltCardDeck()
         {
             string listOfCards = "";
@@ -112,10 +170,16 @@ namespace Blackjack
             //deck = new List<string>(52) { "Spade00", "Spade02", "Spade03", "Spade04", "Spade05", "Spade06", "Spade07", "Spade08", "Spade09", "Spade10",
             //"SpadeJJ", "SpadeQQ", "SpadeKK"};
             deck = new List<List<string>>(52) {};
+            card = new List<string>(2);
             //maak methode aan met dubbele for lussen om kaarten in list te steken
             //deck.Add(new List<string>(2) {"Spade", "Ace"});
             //deck[0][0];
             BuildDeck();
+            // random kaart
+            rnd = new Random();
+
+            hitButton.IsEnabled = false;
+            standButton.IsEnabled = false;
         }
     }
 }

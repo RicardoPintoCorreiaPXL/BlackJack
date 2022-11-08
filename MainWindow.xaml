@@ -16,7 +16,7 @@
             <Border BorderBrush="Black" BorderThickness="4">
                 <StackPanel Height="414" Width="250" HorizontalAlignment="Left" Background="Beige" >
                     <Border Margin="20" BorderBrush="Black" BorderThickness="4">
-                        <TextBlock x:Name="playerTextblock" Height="200" Width="200" Background="Wheat"></TextBlock>
+                        <TextBox x:Name="playerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
                     </Border>
                     <Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">
                         <Image x:Name="playerCardImage" Margin="0,-4,0,-4"/>
@@ -36,7 +36,7 @@
             <Border BorderBrush="Black" BorderThickness="4">
                 <StackPanel Height="414" Width="250" HorizontalAlignment="Right" Background="Beige">
                     <Border Margin="20" BorderBrush="Black" BorderThickness="4">
-                        <TextBlock x:Name="computerTextblock" Height="200" Width="200" Background="Wheat"></TextBlock>
+                        <TextBox x:Name="computerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
                     </Border>
                     <Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">
                         <Image x:Name="computerCardImage" Margin="0,1,0,0"/>
