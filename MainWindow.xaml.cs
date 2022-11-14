@@ -128,8 +128,14 @@ namespace Blackjack
             switch (card)
             {
                 case "Ace":
-                    //to be changed in future
-                    value = 1;
+                    //changed to auto choose
+                    if ((points + 11) > 21)
+                    {
+                        value = 1;
+                    } else
+                    {
+                        value = 11;
+                    }                    
                     return points + value;
                     break;
                 case "Jack":
