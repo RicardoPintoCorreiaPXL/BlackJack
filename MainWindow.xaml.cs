@@ -65,12 +65,22 @@ namespace Blackjack
             standButton.IsEnabled = true;
         }
 
+        private Image GetCardImg()
+        {
+            Image card = new Image();
+            // card.SetBinding();
+            //string path = "C:\Users\corre\Desktop\DOTNETPRO\BlackJack_main\CardImg\Heart\7_of_hearts.png";
+            //card = 
+            return card;
+        }
+
         private void PlayerStatistics()
         {
             playerTextbox.AppendText(GetCardName());
             playerTextbox.AppendText(Environment.NewLine);
             playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
             playerLabel.Content = playerPoints.ToString();
+            playerCardImage = GetCardImg();
         } 
 
         private void ComputerStatistics()
@@ -79,6 +89,7 @@ namespace Blackjack
             computerTextbox.AppendText(Environment.NewLine);
             computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
             commputerLabel.Content = computerPoints.ToString();
+            computerCardImage = GetCardImg();
         }
 
         private void hitButton_Click(object sender, RoutedEventArgs e)
