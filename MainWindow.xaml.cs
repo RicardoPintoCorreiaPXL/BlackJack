@@ -69,6 +69,7 @@ namespace Blackjack
         {
             Image card = new Image();
             // card.SetBinding();
+            // GetCardName() return example Heart 7
             //string path = "C:\Users\corre\Desktop\DOTNETPRO\BlackJack_main\CardImg\Heart\7_of_hearts.png";
             //card = 
             return card;
