@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace Blackjack
 {
@@ -65,14 +68,17 @@ namespace Blackjack
             standButton.IsEnabled = true;
         }
 
-        private Image GetCardImg()
+        private ImageSource GetCardImg()
         {
-            Image card = new Image();
             // card.SetBinding();
             // GetCardName() return example Heart 7
             //string path = "C:\Users\corre\Desktop\DOTNETPRO\BlackJack_main\CardImg\Heart\7_of_hearts.png";
             //card = 
-            return card;
+            //string folderPath = Environment.GetFolderPath(Environment.CurrentDirectory.(@"/CardImg/Heart/7_of_hearts.png"));
+            string face = card[0];
+            string number = card[1];
+            BitmapImage cardImage = new BitmapImage(new Uri(new Uri(Directory.GetCurrentDirectory(), UriKind.Absolute), new Uri($@"../../CardImg/{face}/{number}.png", UriKind.Relative)));
+            return cardImage;
         }
 
         private void PlayerStatistics()
@@ -81,7 +87,7 @@ namespace Blackjack
             playerTextbox.AppendText(Environment.NewLine);
             playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
             playerLabel.Content = playerPoints.ToString();
-            playerCardImage = GetCardImg();
+            playerCardImage.Source = GetCardImg();
         } 
 
         private void ComputerStatistics()
@@ -90,7 +96,7 @@ namespace Blackjack
             computerTextbox.AppendText(Environment.NewLine);
             computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
             commputerLabel.Content = computerPoints.ToString();
-            computerCardImage = GetCardImg();
+            computerCardImage.Source = GetCardImg();
         }
 
         private void hitButton_Click(object sender, RoutedEventArgs e)
