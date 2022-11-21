@@ -12,7 +12,7 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" Height="auto" Width="auto">
-            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Left">
+            <Viewbox MaxWidth="600" VerticalAlignment="Stretch" HorizontalAlignment="Left">
                 <Border BorderBrush="Black" BorderThickness="4">
                     <StackPanel MinHeight="450" Height="auto" Width="auto" HorizontalAlignment="Left" Background="Beige" >
                         <Border Margin="20" BorderBrush="Black" BorderThickness="4">
@@ -31,7 +31,7 @@
                     </StackPanel>
                 </Border>
             </Viewbox>
-            <Viewbox MaxWidth="800" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+            <Viewbox MaxWidth="600" VerticalAlignment="Stretch" HorizontalAlignment="Center">
                 <StackPanel Height="auto" Width="auto" Margin="10" HorizontalAlignment="Center">
                     <Button x:Name="dealButton"  Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" FontFamily="Arial Black" Click="dealButton_Click">
                         <Viewbox>
@@ -48,7 +48,7 @@
                     <Label FontFamily="Arial Black" Name="winConditionLabel" HorizontalContentAlignment="Center" Content="Deal to start" Width="135" Height="45" BorderBrush="Black" BorderThickness="4"/>
                 </StackPanel>
             </Viewbox>
-            <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Right">
+            <Viewbox MaxWidth="600" VerticalAlignment="Stretch" HorizontalAlignment="Right">
                 <Border BorderBrush="Black" BorderThickness="4">
                     <StackPanel MinHeight="450" Height="auto" Width="250" HorizontalAlignment="Right" Background="Beige">
                         <Border Margin="20" BorderBrush="Black" BorderThickness="4">
