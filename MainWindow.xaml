@@ -18,9 +18,15 @@
                     <Border Margin="20" BorderBrush="Black" BorderThickness="4">
                         <TextBox x:Name="playerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
                     </Border>
-                    <Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">
-                        <Image x:Name="playerCardImage" Margin="0,-4,0,-4"/>
-                    </Border>
+                    <!--<Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="200">-->
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Image Width="100" x:Name="playerCardImage" Margin="10,-4,-80,-4"/>
+                        <Image Width="100" x:Name="playerCardImageTwo" Margin="0,-4,-80,-4"/>
+                        <Image Width="100" x:Name="playerCardImageThree" Margin="0,-4,0,-4"/>
+                        <Image Width="100" x:Name="playerCardImageNew" Margin="0,-4,0,-4"/>
+                    </WrapPanel>
+                        
+                    <!--</Border>-->
                 </StackPanel>
             </Border>
             <StackPanel Height="410" Width="220" Margin="10" HorizontalAlignment="Center">
@@ -38,9 +44,15 @@
                     <Border Margin="20" BorderBrush="Black" BorderThickness="4">
                         <TextBox x:Name="computerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
                     </Border>
-                    <Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">
-                        <Image x:Name="computerCardImage" Margin="0,1,0,0"/>
-                    </Border>
+                    <!--<Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">-->
+                        <!--<Image x:Name="computerCardImage" Margin="0,1,0,0"/>-->
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Image Width="100" x:Name="computerCardImage" Margin="10,-4,-80,-4"/>
+                        <Image Width="100" x:Name="computerCardImageTwo" Margin="0,-4,-80,-4"/>
+                        <Image Width="100" x:Name="computerCardImageThree" Margin="0,-4,0,-4"/>
+                        <Image Width="100" x:Name="computerCardImageNew" Margin="0,-4,0,-4"/>
+                    </WrapPanel>
+                    <!--</Border>-->
                 </StackPanel>
             </Border>
 

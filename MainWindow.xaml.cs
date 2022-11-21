@@ -34,9 +34,27 @@ namespace Blackjack
             InitializeComponent();
         }
 
+        private void EmptyBoard()
+        {
+            playerCardImage.Source = null;
+            playerCardImageTwo.Source = null;
+            playerCardImageThree.Source = null;
+            playerCardImageNew.Source = null;
+
+            computerCardImage.Source = null;
+            computerCardImageTwo.Source = null;
+            computerCardImageThree.Source = null;
+            computerCardImageNew.Source = null;
+        }
+
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
             BuildDeck();
+            
+            if (computerCardImageNew.Source != null)
+            {
+                EmptyBoard();
+            }
             dealButton.IsEnabled = false;
             winConditionLabel.Visibility = Visibility.Hidden;
             if (!(playerTextbox == null))
@@ -81,13 +99,75 @@ namespace Blackjack
             return cardImage;
         }
 
+        private void SetCardImg(int player)
+        {
+            //ADD A FITH PICTURE
+            switch (player)
+            {
+                case 0:
+                    if (computerCardImageNew.Source == null)
+                    {
+                        computerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (computerCardImage.Source == null)
+                    {
+                        computerCardImage.Source = computerCardImageNew.Source;
+                        computerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (computerCardImageTwo.Source == null)
+                    {
+                        computerCardImageTwo.Source = computerCardImageNew.Source;
+                        computerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (computerCardImageThree.Source == null)
+                    {
+                        computerCardImageThree.Source = computerCardImageNew.Source;
+                        computerCardImageNew.Source = GetCardImg();
+                    }
+                    else
+                    {
+                        MessageBox.Show("no more card space");
+                    }
+                    break;
+                case 1:
+                    if (playerCardImageNew.Source == null)
+                    {
+                        playerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (playerCardImage.Source == null)
+                    {
+                        playerCardImage.Source = playerCardImageNew.Source;
+                        playerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (playerCardImageTwo.Source == null)
+                    {
+                        playerCardImageTwo.Source = playerCardImageNew.Source;
+                        playerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (playerCardImageThree.Source == null)
+                    {
+                        playerCardImageThree.Source = playerCardImageNew.Source;
+                        playerCardImageNew.Source = GetCardImg();
+                    }
+                    else
+                    {
+                        MessageBox.Show("no more card space");
+                    }
+                    break;
+            }
+        }
+
         private void PlayerStatistics()
         {
             playerTextbox.AppendText(GetCardName());
             playerTextbox.AppendText(Environment.NewLine);
             playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
             playerLabel.Content = playerPoints.ToString();
-            playerCardImage.Source = GetCardImg();
+            // testing multiple images
+            //playerCardImage.Source = GetCardImg();
+            //playerCardImageTwo.Source = GetCardImg();
+            //playerCardImageThree.Source = GetCardImg();
+            SetCardImg(1);
         } 
 
         private void ComputerStatistics()
@@ -96,7 +176,8 @@ namespace Blackjack
             computerTextbox.AppendText(Environment.NewLine);
             computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
             commputerLabel.Content = computerPoints.ToString();
-            computerCardImage.Source = GetCardImg();
+            //computerCardImage.Source = GetCardImg();
+            SetCardImg(0);
         }
 
         private void hitButton_Click(object sender, RoutedEventArgs e)
