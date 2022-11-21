@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\corre\\Desktop\\Werkplekleren\\Blackjack.csproj",
+      "projectUniqueName": "C:\\Users\\corre\\Desktop\\DOTNETPRO\\BlackJack_main\\Blackjack.csproj",
       "projectName": "Blackjack",
-      "projectPath": "C:\\Users\\corre\\Desktop\\Werkplekleren\\Blackjack.csproj",
+      "projectPath": "C:\\Users\\corre\\Desktop\\DOTNETPRO\\BlackJack_main\\Blackjack.csproj",
       "packagesPath": "C:\\Users\\corre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\corre\\Desktop\\Werkplekleren\\obj\\",
+      "outputPath": "C:\\Users\\corre\\Desktop\\DOTNETPRO\\BlackJack_main\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\corre\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -63,7 +63,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

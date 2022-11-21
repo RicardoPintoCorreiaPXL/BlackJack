@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace Blackjack
 {
@@ -31,9 +34,29 @@ namespace Blackjack
             InitializeComponent();
         }
 
+        private void EmptyBoard()
+        {
+            playerCardImage.Source = null;
+            playerCardImageTwo.Source = null;
+            playerCardImageThree.Source = null;
+            playerCardImageNew.Source = null;
+            playerCardImageFour.Source = null;
+    
+            computerCardImage.Source = null;
+            computerCardImageTwo.Source = null;
+            computerCardImageThree.Source = null;
+            computerCardImageNew.Source = null;
+            computerCardImageFour.Source = null;
+        }
+
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
             BuildDeck();
+            
+            if (computerCardImageNew.Source != null)
+            {
+                EmptyBoard();
+            }
             dealButton.IsEnabled = false;
             winConditionLabel.Visibility = Visibility.Hidden;
             if (!(playerTextbox == null))
@@ -65,12 +88,98 @@ namespace Blackjack
             standButton.IsEnabled = true;
         }
 
+        private ImageSource GetCardImg()
+        {
+            // card.SetBinding();
+            // GetCardName() return example Heart 7
+            //string path = "C:\Users\corre\Desktop\DOTNETPRO\BlackJack_main\CardImg\Heart\7_of_hearts.png";
+            //card = 
+            //string folderPath = Environment.GetFolderPath(Environment.CurrentDirectory.(@"/CardImg/Heart/7_of_hearts.png"));
+            string face = card[0];
+            string number = card[1];
+            BitmapImage cardImage = new BitmapImage(new Uri(new Uri(Directory.GetCurrentDirectory(), UriKind.Absolute), new Uri($@"../../CardImg/{face}/{number}.png", UriKind.Relative)));
+            return cardImage;
+        }
+
+        private void SetCardImg(int player)
+        {
+            //ADD A FITH PICTURE
+            switch (player)
+            {
+                case 0:
+                    if (computerCardImageNew.Source == null)
+                    {
+                        computerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (computerCardImage.Source == null)
+                    {
+                        computerCardImage.Source = computerCardImageNew.Source;
+                        computerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (computerCardImageTwo.Source == null)
+                    {
+                        computerCardImageTwo.Source = computerCardImageNew.Source;
+                        computerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (computerCardImageThree.Source == null)
+                    {
+                        computerCardImageThree.Source = computerCardImageNew.Source;
+                        computerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (computerCardImageFour.Source == null)
+                    {
+                        computerCardImageFour.Source = computerCardImageNew.Source;
+                        computerCardImageNew.Source = GetCardImg();
+                    }
+                    else
+                    {
+                        MessageBox.Show("no more card space");
+                    }
+                    break;
+                case 1:
+                    if (playerCardImageNew.Source == null)
+                    {
+                        playerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (playerCardImage.Source == null)
+                    {
+                        playerCardImage.Source = playerCardImageNew.Source;
+                        playerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (playerCardImageTwo.Source == null)
+                    {
+                        playerCardImageTwo.Source = playerCardImageNew.Source;
+                        playerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (playerCardImageThree.Source == null)
+                    {
+                        playerCardImageThree.Source = playerCardImageNew.Source;
+                        playerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (playerCardImageFour.Source == null)
+                    {
+                        playerCardImageFour.Source = playerCardImageNew.Source;
+                        playerCardImageNew.Source = GetCardImg();
+                    }
+                    else
+                    {
+                        MessageBox.Show("no more card space");
+                    }
+                    break;
+            }
+        }
+
         private void PlayerStatistics()
         {
             playerTextbox.AppendText(GetCardName());
             playerTextbox.AppendText(Environment.NewLine);
             playerPoints = CalculationOfCards(playerPoints, card[1].ToString());
             playerLabel.Content = playerPoints.ToString();
+            // testing multiple images
+            //playerCardImage.Source = GetCardImg();
+            //playerCardImageTwo.Source = GetCardImg();
+            //playerCardImageThree.Source = GetCardImg();
+            SetCardImg(1);
         } 
 
         private void ComputerStatistics()
@@ -79,6 +188,8 @@ namespace Blackjack
             computerTextbox.AppendText(Environment.NewLine);
             computerPoints = CalculationOfCards(computerPoints, card[1].ToString());
             commputerLabel.Content = computerPoints.ToString();
+            //computerCardImage.Source = GetCardImg();
+            SetCardImg(0);
         }
 
         private void hitButton_Click(object sender, RoutedEventArgs e)
@@ -128,8 +239,14 @@ namespace Blackjack
             switch (card)
             {
                 case "Ace":
-                    //to be changed in future
-                    value = 1;
+                    //changed to auto choose
+                    if ((points + 11) > 21)
+                    {
+                        value = 1;
+                    } else
+                    {
+                        value = 11;
+                    }                    
                     return points + value;
                     break;
                 case "Jack":

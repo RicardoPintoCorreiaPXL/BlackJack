@@ -7,4 +7,11 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CardImg\Heart\" />
+    <Folder Include="CardImg\Clover\" />
+    <Folder Include="CardImg\Diamond\" />
+    <Folder Include="CardImg\Spade\" />
+  </ItemGroup>
+
 </Project>
