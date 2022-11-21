@@ -40,11 +40,13 @@ namespace Blackjack
             playerCardImageTwo.Source = null;
             playerCardImageThree.Source = null;
             playerCardImageNew.Source = null;
-
+            playerCardImageFour.Source = null;
+    
             computerCardImage.Source = null;
             computerCardImageTwo.Source = null;
             computerCardImageThree.Source = null;
             computerCardImageNew.Source = null;
+            computerCardImageFour.Source = null;
         }
 
         private void dealButton_Click(object sender, RoutedEventArgs e)
@@ -124,6 +126,11 @@ namespace Blackjack
                         computerCardImageThree.Source = computerCardImageNew.Source;
                         computerCardImageNew.Source = GetCardImg();
                     }
+                    else if (computerCardImageFour.Source == null)
+                    {
+                        computerCardImageFour.Source = computerCardImageNew.Source;
+                        computerCardImageNew.Source = GetCardImg();
+                    }
                     else
                     {
                         MessageBox.Show("no more card space");
@@ -147,6 +154,11 @@ namespace Blackjack
                     else if (playerCardImageThree.Source == null)
                     {
                         playerCardImageThree.Source = playerCardImageNew.Source;
+                        playerCardImageNew.Source = GetCardImg();
+                    }
+                    else if (playerCardImageFour.Source == null)
+                    {
+                        playerCardImageFour.Source = playerCardImageNew.Source;
                         playerCardImageNew.Source = GetCardImg();
                     }
                     else
