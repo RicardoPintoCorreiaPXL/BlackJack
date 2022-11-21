@@ -5,59 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Blackjack"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid Background="DarkGreen">
+        Title="MainWindow" Height="500" Width="800" Loaded="Window_Loaded">
+    <Grid MaxHeight="1920" MaxWidth="1920" Background="DarkGreen">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="79*"/>
-            <ColumnDefinition Width="66*"/>
             <ColumnDefinition Width="655*"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <WrapPanel Margin="5,5,5,5" Grid.ColumnSpan="3">
-            <Border BorderBrush="Black" BorderThickness="4">
-                <StackPanel Height="414" Width="250" HorizontalAlignment="Left" Background="Beige" >
-                    <Border Margin="20" BorderBrush="Black" BorderThickness="4">
-                        <TextBox x:Name="playerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
-                    </Border>
-                    <!--<Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="200">-->
-                    <WrapPanel HorizontalAlignment="Center">
-                        <Image Width="100" x:Name="playerCardImage" Margin="10,-4,-80,-4"/>
-                        <Image Width="100" x:Name="playerCardImageTwo" Margin="0,-4,-80,-4"/>
-                        <Image Width="100" x:Name="playerCardImageThree" Margin="0,-4,-80,-4"/>
-                        <Image Width="100" x:Name="playerCardImageFour" Margin="0,-4,-20,-4"/>
-                        <Image Width="100" x:Name="playerCardImageNew" Margin="0,-4,0,-4"/>
-                    </WrapPanel>
-                        
-                    <!--</Border>-->
-                </StackPanel>
-            </Border>
-            <StackPanel Height="410" Width="220" Margin="10" HorizontalAlignment="Center">
-                <Button x:Name="dealButton" Content="DEAL!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" FontFamily="Arial Black" Click="dealButton_Click"></Button>
-                <Button x:Name="hitButton" FontFamily="Arial Black" Content="HIT!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="hitButton_Click"></Button>
-                <Button x:Name="standButton" FontFamily="Arial Black" Content="STAND!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="standButton_Click"></Button>
-                <Label FontFamily="Arial Black" Name="winConditionLabel" HorizontalContentAlignment="Center" Content="Deal to start" Width="135" Height="45" BorderBrush="Black" BorderThickness="4"/>
-                <WrapPanel Height="120" Margin="5">
-                    <Label Name="playerLabel" FontSize="20" FontFamily="Arial Black" Content="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="20" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
-                    <Label Name="commputerLabel" FontSize="20" FontFamily="Arial Black" Content="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
-                </WrapPanel>
-            </StackPanel>
-            <Border BorderBrush="Black" BorderThickness="4">
-                <StackPanel Height="414" Width="250" HorizontalAlignment="Right" Background="Beige">
-                    <Border Margin="20" BorderBrush="Black" BorderThickness="4">
-                        <TextBox x:Name="computerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
-                    </Border>
-                    <!--<Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">-->
-                        <!--<Image x:Name="computerCardImage" Margin="0,1,0,0"/>-->
-                    <WrapPanel HorizontalAlignment="Center">
-                        <Image Width="100" x:Name="computerCardImage" Margin="10,-4,-80,-4"/>
-                        <Image Width="100" x:Name="computerCardImageTwo" Margin="0,-4,-80,-4"/>
-                        <Image Width="100" x:Name="computerCardImageThree" Margin="0,-4,-80,-4"/>
-                        <Image Width="100" x:Name="computerCardImageFour" Margin="0,-4,-20,-4"/>
-                        <Image Width="100" x:Name="computerCardImageNew" Margin="0,-4,0,-4"/>
-                    </WrapPanel>
-                    <!--</Border>-->
-                </StackPanel>
-            </Border>
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" Height="auto" Width="auto">
+            <Viewbox MaxWidth="600" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                <Border BorderBrush="Black" BorderThickness="4">
+                    <StackPanel MinHeight="450" Height="auto" Width="auto" HorizontalAlignment="Left" Background="Beige" >
+                        <Border Margin="20" BorderBrush="Black" BorderThickness="4">
+                            <TextBox x:Name="playerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
+                        </Border>
+                        <!--<Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="200">-->
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Image Width="100" x:Name="playerCardImage" Margin="10,-4,-80,-4"/>
+                            <Image Width="100" x:Name="playerCardImageTwo" Margin="0,-4,-80,-4"/>
+                            <Image Width="100" x:Name="playerCardImageThree" Margin="0,-4,-80,-4"/>
+                            <Image Width="100" x:Name="playerCardImageFour" Margin="0,-4,-20,-4"/>
+                            <Image Width="100" x:Name="playerCardImageNew" Margin="0,-4,0,-4"/>
+                        </WrapPanel>
 
+                        <!--</Border>-->
+                    </StackPanel>
+                </Border>
+            </Viewbox>
+            <Viewbox MaxWidth="600" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+                <StackPanel Height="auto" Width="auto" Margin="10" HorizontalAlignment="Center">
+                    <Button x:Name="dealButton"  Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" FontFamily="Arial Black" Click="dealButton_Click">
+                        <Viewbox>
+                            <TextBlock>DEAL!</TextBlock>
+                        </Viewbox>
+                    </Button>
+                    <Button x:Name="hitButton" FontFamily="Arial Black" Content="HIT!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="hitButton_Click"></Button>
+                    <Button x:Name="standButton" FontFamily="Arial Black" Content="STAND!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="standButton_Click"></Button>
+                    
+                    <WrapPanel Height="auto" Margin="5">
+                        <Label HorizontalAlignment="Left" Name="playerLabel" FontSize="20" FontFamily="Arial Black" Content="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
+                        <Label HorizontalAlignment="Right" Name="commputerLabel" FontSize="20" FontFamily="Arial Black" Content="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
+                    </WrapPanel>
+                    <Label FontFamily="Arial Black" Name="winConditionLabel" HorizontalContentAlignment="Center" Content="Deal to start" Width="135" Height="45" BorderBrush="Black" BorderThickness="4"/>
+                </StackPanel>
+            </Viewbox>
+            <Viewbox MaxWidth="600" VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                <Border BorderBrush="Black" BorderThickness="4">
+                    <StackPanel MinHeight="450" Height="auto" Width="250" HorizontalAlignment="Right" Background="Beige">
+                        <Border Margin="20" BorderBrush="Black" BorderThickness="4">
+                            <TextBox x:Name="computerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
+                        </Border>
+                        <!--<Border Background="White" BorderBrush="Black" BorderThickness="4" Height="135" Width="95">-->
+                        <!--<Image x:Name="computerCardImage" Margin="0,1,0,0"/>-->
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Image Width="100" x:Name="computerCardImage" Margin="10,-4,-80,-4"/>
+                            <Image Width="100" x:Name="computerCardImageTwo" Margin="0,-4,-80,-4"/>
+                            <Image Width="100" x:Name="computerCardImageThree" Margin="0,-4,-80,-4"/>
+                            <Image Width="100" x:Name="computerCardImageFour" Margin="0,-4,-20,-4"/>
+                            <Image Width="100" x:Name="computerCardImageNew" Margin="0,-4,0,-4"/>
+                        </WrapPanel>
+                        <!--</Border>-->
+                    </StackPanel>
+                </Border>
+            </Viewbox>
         </WrapPanel>
 
     </Grid>
