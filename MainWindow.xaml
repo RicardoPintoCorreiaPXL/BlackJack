@@ -14,7 +14,7 @@
         <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" Height="auto" Width="auto">
             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Left">
                 <Border BorderBrush="Black" BorderThickness="4">
-                    <StackPanel MinHeight="500" Height="auto" Width="auto" HorizontalAlignment="Left" Background="Beige" >
+                    <StackPanel MinHeight="1" Height="auto" Width="auto" HorizontalAlignment="Left" Background="Beige" >
                         <Border Margin="20" BorderBrush="Black" BorderThickness="4">
                             <TextBox x:Name="playerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
                         </Border>
@@ -33,7 +33,11 @@
             </Grid>
             <Grid MaxWidth="800" VerticalAlignment="Stretch" HorizontalAlignment="Center">
                 <StackPanel Height="auto" Width="auto" Margin="10" HorizontalAlignment="Center">
-                    <Button x:Name="dealButton" Content="DEAL!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" FontFamily="Arial Black" Click="dealButton_Click"></Button>
+                    <Button x:Name="dealButton"  Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" FontFamily="Arial Black" Click="dealButton_Click">
+                        <Viewbox>
+                            <TextBlock>DEAL!</TextBlock>
+                        </Viewbox>
+                    </Button>
                     <Button x:Name="hitButton" FontFamily="Arial Black" Content="HIT!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="hitButton_Click"></Button>
                     <Button x:Name="standButton" FontFamily="Arial Black" Content="STAND!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="standButton_Click"></Button>
                     <Label FontFamily="Arial Black" Name="winConditionLabel" HorizontalContentAlignment="Center" Content="Deal to start" Width="135" Height="45" BorderBrush="Black" BorderThickness="4"/>
@@ -45,7 +49,7 @@
             </Grid>
             <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right">
                 <Border BorderBrush="Black" BorderThickness="4">
-                    <StackPanel Height="auto" Width="250" HorizontalAlignment="Right" Background="Beige">
+                    <StackPanel Height="414" Width="250" HorizontalAlignment="Right" Background="Beige">
                         <Border Margin="20" BorderBrush="Black" BorderThickness="4">
                             <TextBox x:Name="computerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
                         </Border>

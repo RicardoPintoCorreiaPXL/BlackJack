@@ -58,7 +58,7 @@ namespace Blackjack
                 EmptyBoard();
             }
             dealButton.IsEnabled = false;
-            winConditionLabel.Visibility = Visibility.Hidden;
+            //winConditionLabel.Visibility = Visibility.Hidden;
             if (!(playerTextbox == null))
             {
                 playerTextbox.Clear();
