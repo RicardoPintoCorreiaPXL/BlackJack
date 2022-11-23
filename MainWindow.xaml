@@ -40,7 +40,7 @@
                     </Button>
                     <Button x:Name="hitButton" FontFamily="Arial Black" Content="HIT!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="hitButton_Click"></Button>
                     <Button x:Name="standButton" FontFamily="Arial Black" Content="STAND!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="standButton_Click"></Button>
-                    
+
                     <WrapPanel Height="auto" Margin="5">
                         <Label HorizontalAlignment="Left" Name="playerLabel" FontSize="20" FontFamily="Arial Black" Content="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
                         <Label HorizontalAlignment="Right" Name="commputerLabel" FontSize="20" FontFamily="Arial Black" Content="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
