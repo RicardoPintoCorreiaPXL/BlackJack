@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Windows.Threading;
 
 namespace Blackjack
 {
@@ -29,6 +30,9 @@ namespace Blackjack
         private List<string> card;
         private int playerPoints;
         private int computerPoints;
+        private DispatcherTimer timer;
+        private bool playerGetsCard = false;
+        private int count;
         public MainWindow()
         {
             InitializeComponent();
@@ -68,6 +72,7 @@ namespace Blackjack
 
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
+            count = 0;
             ClearBoard();
             dealButton.IsEnabled = true;
             winConditionLabel.Visibility = Visibility.Visible;
@@ -80,27 +85,54 @@ namespace Blackjack
         {
             BuildDeck();
             ClearBoard();
-            for (int p = 0; p < 2; p++)
-            {
-                for (int i = 0; i < 2; i++)
-                {
+            timer.Start();
+            //for (int p = 0; p < 2; p++)
+            //{
+            //    for (int i = 0; i < 2; i++)
+            //    {
                     
-                    GetCard();
-                    
-                    switch (p)
-                    {
-                        case 0:
-                            PlayerStatistics();
-                            break;
-                        case 1:
-                            ComputerStatistics();
-                            break;
-                    } 
-                }
-            }
+            //        GetCard();
+
+            //        switch (p)
+            //        {
+            //            case 0:
+            //                PlayerStatistics();
+            //                break;
+            //            case 1:
+            //                ComputerStatistics();
+            //                break;
+            //        }
+            //    }
+            //}
             hitButton.IsEnabled = true;
             standButton.IsEnabled = true;
             NewGameButton.IsEnabled = false;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            GetCard();
+            if (playerGetsCard)
+            {
+                PlayerStatistics();
+                playerGetsCard = false;
+            } else
+            {
+                ComputerStatistics();
+                playerGetsCard = true;
+            }
+            count++;
+            StopTimer();
+        }
+
+        private void StopTimer()
+        {
+            if (count == 4)
+            {
+                timer.Stop();
+                count = 0;
+                //MessageBox.Show("is four");
+            }
         }
 
         private ImageSource GetCardImg()
@@ -282,7 +314,8 @@ namespace Blackjack
         {
             dealButton.IsEnabled = true;
             hitButton.IsEnabled = false;
-            standButton.IsEnabled=false;
+            standButton.IsEnabled = false;
+            NewGameButton.IsEnabled = true;
             winConditionLabel.Visibility = Visibility.Visible;
             if (playerPoints == computerPoints)
             {
@@ -379,10 +412,19 @@ namespace Blackjack
             //BuildDeck(); move to deal
             // random kaart
             rnd = new Random();
-
+            Timer();
             hitButton.IsEnabled = false;
             standButton.IsEnabled = false;
             dealButton.IsEnabled = false;
         }
+
+        private void Timer()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Tick += new EventHandler(Timer_Tick);
+        }
+
+        
     }
 }
