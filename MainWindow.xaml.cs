@@ -49,10 +49,8 @@ namespace Blackjack
             computerCardImageFour.Source = null;
         }
 
-        private void dealButton_Click(object sender, RoutedEventArgs e)
+        private void ClearBoard()
         {
-            BuildDeck();
-            
             if (computerCardImageNew.Source != null)
             {
                 EmptyBoard();
@@ -66,6 +64,22 @@ namespace Blackjack
             }
             playerPoints = 0;
             computerPoints = 0;
+        }
+
+        private void NewGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearBoard();
+            dealButton.IsEnabled = true;
+            winConditionLabel.Visibility = Visibility.Visible;
+            winConditionLabel.Content = "DEAL TO START";
+            //add kapital and bettting value
+            // add slider
+        }
+
+        private void dealButton_Click(object sender, RoutedEventArgs e)
+        {
+            BuildDeck();
+            ClearBoard();
             for (int p = 0; p < 2; p++)
             {
                 for (int i = 0; i < 2; i++)
@@ -86,6 +100,7 @@ namespace Blackjack
             }
             hitButton.IsEnabled = true;
             standButton.IsEnabled = true;
+            NewGameButton.IsEnabled = false;
         }
 
         private ImageSource GetCardImg()
@@ -202,6 +217,7 @@ namespace Blackjack
         private void standButton_Click(object sender, RoutedEventArgs e)
         {
             computerPlays();
+            NewGameButton.IsEnabled = true;
         }
 
         private string GetCardName()
@@ -270,7 +286,7 @@ namespace Blackjack
             winConditionLabel.Visibility = Visibility.Visible;
             if (playerPoints == computerPoints)
             {
-                winConditionLabel.Content = "TIE!";
+                winConditionLabel.Content = "PUSH!";
             }
             else if (playerPoints > computerPoints && playerPoints < 22 || computerPoints > 21)
             {
@@ -366,6 +382,7 @@ namespace Blackjack
 
             hitButton.IsEnabled = false;
             standButton.IsEnabled = false;
+            dealButton.IsEnabled = false;
         }
     }
 }
