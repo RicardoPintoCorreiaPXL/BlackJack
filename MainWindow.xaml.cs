@@ -67,7 +67,9 @@ namespace Blackjack
                 computerTextbox.Clear();
             }
             playerPoints = 0;
+            playerLabel.Content = 0;
             computerPoints = 0;
+            commputerLabel.Content = 0;
         }
 
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
