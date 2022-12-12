@@ -15,7 +15,7 @@
             <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" Height="auto" Width="auto">
                 <Viewbox MaxWidth="600" VerticalAlignment="Stretch" HorizontalAlignment="Left">
                     <Border BorderBrush="Black" BorderThickness="4">
-                        <StackPanel MinHeight="450" Height="auto" Width="auto" HorizontalAlignment="Left" Background="Beige" >
+                        <StackPanel MinHeight="450" Height="500" Width="auto" HorizontalAlignment="Center" Background="Beige" >
                             <Border Margin="20" BorderBrush="Black" BorderThickness="4">
                                 <TextBox x:Name="playerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
                             </Border>
@@ -43,7 +43,7 @@
                             <Button x:Name="hitButton" FontFamily="Arial Black" Content="HIT!" Width="75"  Height="45" Margin="5" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="hitButton_Click"></Button>
                             <Button x:Name="standButton" FontFamily="Arial Black" Content="STAND!" Width="75" Height="45" Margin="5" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="standButton_Click"></Button>
                         </WrapPanel>
-                        
+
 
                         <WrapPanel Height="auto" Margin="5">
                             <Label HorizontalAlignment="Left" Name="playerLabel" FontSize="20" FontFamily="Arial Black" Content="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="5" Height="75" Width="75" BorderBrush="Black" BorderThickness="4" Background="White"/>
@@ -51,12 +51,34 @@
                         </WrapPanel>
                         <Label FontFamily="Arial Black" Name="winConditionLabel" HorizontalContentAlignment="Center" Content="BLACKJACK 21" Width="135" Height="45" BorderBrush="Black" BorderThickness="4"/>
                         <Button x:Name="NewGameButton" FontFamily="Arial Black" Content="New Game!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="NewGameButton_Click"></Button>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Border BorderBrush="Black" BorderThickness="3">
+                                <StackPanel Margin="5" HorizontalAlignment="Left">
+                                    <Label FontFamily="Arial Black">
+                                        <Viewbox>
+                                            <TextBlock>Total Money</TextBlock>
+                                        </Viewbox>
+                                    </Label>
+                                    <Label FontFamily="Arial Black" HorizontalContentAlignment="Center" Content="0"></Label>
+                                </StackPanel>
+                            </Border>
+                            <Border BorderBrush="Black" BorderThickness="3">
+                                <StackPanel Margin="5" HorizontalAlignment="Right">
+                                    <Label FontFamily="Arial Black">
+                                        <Viewbox>
+                                            <TextBlock>Bet</TextBlock>
+                                        </Viewbox>
+                                    </Label>
+                                    <Label FontFamily="Arial Black" HorizontalContentAlignment="Center" Content="0"></Label>
+                                </StackPanel>
+                            </Border>
+                        </WrapPanel>
                         <!--in een wrappanel en stack pannel 2 labels en 2 labels op elkaar-->
                     </StackPanel>
                 </Viewbox>
                 <Viewbox MaxWidth="600" VerticalAlignment="Stretch" HorizontalAlignment="Right">
                     <Border BorderBrush="Black" BorderThickness="4">
-                        <StackPanel MinHeight="450" Height="auto" Width="250" HorizontalAlignment="Right" Background="Beige">
+                        <StackPanel MinHeight="450" Height="500" Width="250" HorizontalAlignment="Right" Background="Beige">
                             <Border Margin="20" BorderBrush="Black" BorderThickness="4">
                                 <TextBox x:Name="computerTextbox" Height="200" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
                             </Border>

@@ -79,7 +79,7 @@ namespace Blackjack
             dealButton.IsEnabled = true;
             winConditionLabel.Visibility = Visibility.Visible;
             winConditionLabel.Content = "DEAL TO START";
-            //add kapital and bettting value
+            //add kapital and betting value
             // add slider
         }
 
@@ -109,6 +109,7 @@ namespace Blackjack
             hitButton.IsEnabled = true;
             standButton.IsEnabled = true;
             NewGameButton.IsEnabled = false;
+            NewGameButton.Visibility = Visibility.Collapsed;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
