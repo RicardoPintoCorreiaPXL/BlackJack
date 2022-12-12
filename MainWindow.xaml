@@ -51,6 +51,7 @@
                         </WrapPanel>
                         <Label FontFamily="Arial Black" Name="winConditionLabel" HorizontalContentAlignment="Center" Content="BLACKJACK 21" Width="135" Height="45" BorderBrush="Black" BorderThickness="4"/>
                         <Button x:Name="NewGameButton" FontFamily="Arial Black" Content="New Game!" Width="135" Height="45" Margin="10" BorderBrush="Black" BorderThickness="4" Background="ForestGreen" Click="NewGameButton_Click"></Button>
+                        <!--in een wrappanel en stack pannel 2 labels en 2 labels op elkaar-->
                     </StackPanel>
                 </Viewbox>
                 <Viewbox MaxWidth="600" VerticalAlignment="Stretch" HorizontalAlignment="Right">
