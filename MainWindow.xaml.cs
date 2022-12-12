@@ -60,7 +60,7 @@ namespace Blackjack
                 EmptyBoard();
             }
             dealButton.IsEnabled = false;
-            winConditionLabel.Visibility = Visibility.Hidden;
+            winConditionLabel.Visibility = Visibility.Collapsed;
             if (!(playerTextbox == null))
             {
                 playerTextbox.Clear();
@@ -253,6 +253,7 @@ namespace Blackjack
         {
             computerPlays();
             NewGameButton.IsEnabled = true;
+            NewGameButton.Visibility = Visibility.Visible;
         }
 
         private string GetCardName()
@@ -319,6 +320,7 @@ namespace Blackjack
             hitButton.IsEnabled = false;
             standButton.IsEnabled = false;
             NewGameButton.IsEnabled = true;
+            NewGameButton.Visibility = Visibility.Visible;
             winConditionLabel.Visibility = Visibility.Visible;
             if (playerPoints == computerPoints)
             {
