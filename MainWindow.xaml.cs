@@ -82,6 +82,19 @@ namespace Blackjack
             //add kapital and betting value
             // add slider
         }
+        private void hitButton_Click(object sender, RoutedEventArgs e)
+        {
+            GetCard();
+            PlayerStatistics();
+            bustCheck(playerPoints);
+        }
+
+        private void standButton_Click(object sender, RoutedEventArgs e)
+        {
+            computerPlays();
+            NewGameButton.IsEnabled = true;
+            NewGameButton.Visibility = Visibility.Visible;
+        }
 
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
@@ -108,6 +121,8 @@ namespace Blackjack
             //}
             hitButton.IsEnabled = true;
             standButton.IsEnabled = true;
+            hitButton.Visibility = Visibility.Visible;
+            standButton.Visibility = Visibility.Visible;
             NewGameButton.IsEnabled = false;
             NewGameButton.Visibility = Visibility.Collapsed;
         }
@@ -242,20 +257,6 @@ namespace Blackjack
             SetCardImg(0);
         }
 
-        private void hitButton_Click(object sender, RoutedEventArgs e)
-        {
-            GetCard();
-            PlayerStatistics();
-            bustCheck(playerPoints);
-        }
-
-        private void standButton_Click(object sender, RoutedEventArgs e)
-        {
-            computerPlays();
-            NewGameButton.IsEnabled = true;
-            NewGameButton.Visibility = Visibility.Visible;
-        }
-
         private string GetCardName()
         {
             string cardName = "";
@@ -322,6 +323,8 @@ namespace Blackjack
             NewGameButton.IsEnabled = true;
             NewGameButton.Visibility = Visibility.Visible;
             winConditionLabel.Visibility = Visibility.Visible;
+            hitButton.Visibility = Visibility.Collapsed;
+            standButton.Visibility = Visibility.Collapsed;
             if (playerPoints == computerPoints)
             {
                 winConditionLabel.Content = "PUSH!";
