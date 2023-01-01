@@ -33,6 +33,8 @@ namespace Blackjack
         private DispatcherTimer timer;
         private bool playerGetsCard = false;
         private int count;
+        private int kapitaal;
+        private int bet;
         public MainWindow()
         {
             InitializeComponent();
@@ -70,17 +72,40 @@ namespace Blackjack
             playerLabel.Content = 0;
             computerPoints = 0;
             commputerLabel.Content = 0;
+            
+
+        }
+
+        private void Slider()
+        {
+            betSlider.TickFrequency = 1;
+            betSlider.Maximum = kapitaal;
+            betSlider.Minimum = CheckMinimunSlider();
+            betSlider.Value = bet;
+        }
+
+        private int CheckMinimunSlider()
+        {
+            double betValeu = kapitaal / 10;
+            bet = Convert.ToInt32(Math.Ceiling(betValeu));
+            betLabel.Content = bet;
+            return bet;
         }
 
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             count = 0;
             ClearBoard();
+            BuildDeck();
             dealButton.IsEnabled = true;
             winConditionLabel.Visibility = Visibility.Visible;
             winConditionLabel.Content = "DEAL TO START";
             //add kapital and betting value
             // add slider
+            kapitaal = 100;
+            SetKapitalValeu();
+            betSlider.Visibility = Visibility.Visible;
+            Slider();
         }
         private void hitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -94,11 +119,14 @@ namespace Blackjack
             computerPlays();
             NewGameButton.IsEnabled = true;
             NewGameButton.Visibility = Visibility.Visible;
+
         }
 
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
-            BuildDeck();
+            betSlider.Visibility = Visibility.Collapsed;
+            kapitaal = kapitaal - bet;
+            SetKapitalValeu();
             ClearBoard();
             timer.Start();
             //for (int p = 0; p < 2; p++)
@@ -125,6 +153,12 @@ namespace Blackjack
             standButton.Visibility = Visibility.Visible;
             NewGameButton.IsEnabled = false;
             NewGameButton.Visibility = Visibility.Collapsed;
+            
+        }
+
+        private void SetKapitalValeu()
+        {
+            totalMoneyLabel.Content = kapitaal;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -317,7 +351,7 @@ namespace Blackjack
 
         private void CheckWhoWon()
         {
-            dealButton.IsEnabled = true;
+            
             hitButton.IsEnabled = false;
             standButton.IsEnabled = false;
             NewGameButton.IsEnabled = true;
@@ -328,13 +362,45 @@ namespace Blackjack
             if (playerPoints == computerPoints)
             {
                 winConditionLabel.Content = "PUSH!";
+                kapitaal = kapitaal + bet;
+                dealButton.IsEnabled = true;
+                SetKapitalValeu();
+                Slider();
+                betSlider.Visibility = Visibility.Visible;
             }
             else if (playerPoints > computerPoints && playerPoints < 22 || computerPoints > 21)
             {
                 winConditionLabel.Content = "WON!";
+                kapitaal = kapitaal + (bet + bet);
+                dealButton.IsEnabled = true;
+                SetKapitalValeu();
+                Slider();
+                betSlider.Visibility = Visibility.Visible;
             } else
             {
-                winConditionLabel.Content = "LOST";
+                
+                if (CheckIfbroke())
+                {
+                    winConditionLabel.Content = "BROKE";
+                } else
+                {
+                    dealButton.IsEnabled = true;
+                    winConditionLabel.Content = "LOST";
+                    Slider();
+                    betSlider.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private bool CheckIfbroke()
+        {
+            if (kapitaal == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -424,8 +490,10 @@ namespace Blackjack
             hitButton.IsEnabled = false;
             standButton.IsEnabled = false;
             dealButton.IsEnabled = false;
+            
         }
 
+        
         private void Timer()
         {
             timer = new DispatcherTimer();
@@ -433,6 +501,10 @@ namespace Blackjack
             timer.Tick += new EventHandler(Timer_Tick);
         }
 
-        
+        private void betSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            bet = Convert.ToInt32(betSlider.Value);
+            betLabel.Content = bet;
+        }
     }
 }
