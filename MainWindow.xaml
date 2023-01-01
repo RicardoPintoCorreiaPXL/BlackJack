@@ -99,7 +99,14 @@
                                 <!--</Border>-->
                             </StackPanel>
                         </Border>
-                        
+                        <WrapPanel HorizontalAlignment="Right">
+                            <Label Height="50" Width="50">
+                                <Viewbox>
+                                    <TextBlock x:Name="cardCountLabel"></TextBlock>
+                                </Viewbox>
+                            </Label>
+                            <Image Width="100" x:Name="deckImage" Height="118"/>
+                        </WrapPanel>
                     </StackPanel>
                 </Viewbox>
             </WrapPanel>

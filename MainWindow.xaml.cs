@@ -92,6 +92,17 @@ namespace Blackjack
             return bet;
         }
 
+        private void CheckDeckCards()
+        {
+            
+            if (deck.Count == 0)
+            {
+                cardCountLabel.Text = "shuffeling";
+                BuildDeck();
+            }
+            cardCountLabel.Text = Convert.ToString(deck.Count);
+        }
+
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             count = 0;
@@ -106,6 +117,8 @@ namespace Blackjack
             SetKapitalValeu();
             betSlider.Visibility = Visibility.Visible;
             Slider();
+            CheckDeckCards();
+            
         }
         private void hitButton_Click(object sender, RoutedEventArgs e)
         {
@@ -185,6 +198,12 @@ namespace Blackjack
                 count = 0;
                 //MessageBox.Show("is four");
             }
+        }
+
+        private void SetDeckBackground()
+        {
+            BitmapImage cardImage = new BitmapImage(new Uri(new Uri(Directory.GetCurrentDirectory(), UriKind.Absolute), new Uri($@"../../CardImg/CardCover/CardCover.png", UriKind.Relative)));
+            deckImage.Source = cardImage;
         }
 
         private ImageSource GetCardImg()
@@ -415,6 +434,7 @@ namespace Blackjack
             card.Add(deck[rint][0]);
             card.Add(deck[rint][1]);
             //MessageBox.Show($"{card[0]},{card[1]}");
+
             RemoveCard(rint);
         }
 
@@ -422,6 +442,7 @@ namespace Blackjack
         {
             deck.RemoveAt(card);
             //TestBuiltCardDeck();
+            CheckDeckCards();
         }
 
         private void BuildDeck()
@@ -490,7 +511,7 @@ namespace Blackjack
             hitButton.IsEnabled = false;
             standButton.IsEnabled = false;
             dealButton.IsEnabled = false;
-            
+            SetDeckBackground();
         }
 
         
