@@ -166,7 +166,21 @@ namespace Blackjack
             standButton.Visibility = Visibility.Visible;
             NewGameButton.IsEnabled = false;
             NewGameButton.Visibility = Visibility.Collapsed;
+            CheckIfDoubleDownPossible();
             
+        }
+
+        private void DoubleDownButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckIfDoubleDownPossible()
+        {
+            if (kapitaal > bet)
+            {
+                DoubleDownButton.Visibility = Visibility.Visible;
+            }
         }
 
         private void SetKapitalValeu()
@@ -527,5 +541,7 @@ namespace Blackjack
             bet = Convert.ToInt32(betSlider.Value);
             betLabel.Content = bet;
         }
+
+        
     }
 }
