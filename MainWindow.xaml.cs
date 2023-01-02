@@ -35,6 +35,7 @@ namespace Blackjack
         private int count;
         private int kapitaal;
         private int bet;
+        private bool doubleDown;
         public MainWindow()
         {
             InitializeComponent();
@@ -110,6 +111,7 @@ namespace Blackjack
         /// <param name="e"></param>
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
+            doubleDown = false;
             count = 0;
             ClearBoard();
             BuildDeck();
@@ -123,6 +125,7 @@ namespace Blackjack
             betSlider.Visibility = Visibility.Visible;
             Slider();
             CheckDeckCards();
+            
             
         }
         private void hitButton_Click(object sender, RoutedEventArgs e)
@@ -142,6 +145,7 @@ namespace Blackjack
 
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
+            doubleDown = false;
             betSlider.Visibility = Visibility.Collapsed;
             kapitaal = kapitaal - bet;
             SetKapitalValeu();
@@ -177,14 +181,33 @@ namespace Blackjack
 
         private void DoubleDownButton_Click(object sender, RoutedEventArgs e)
         {
+            doubleDown = true;
+            DoubleDownTheBet();
+            GetCard();
+            PlayerStatistics();
+            bustCheck(playerPoints);
+            computerPlays();
+            NewGameButton.IsEnabled = true;
+            NewGameButton.Visibility = Visibility.Visible;
+        }
 
+        private void DoubleDownTheBet()
+        {
+            kapitaal = kapitaal - bet;
+            SetKapitalValeu();
+            bet = bet + bet;
+            betLabel.Content = bet;
         }
 
         private void CheckIfDoubleDownPossible()
         {
-            if (kapitaal > bet)
+            if (kapitaal > (bet + bet))
             {
                 DoubleDownButton.Visibility = Visibility.Visible;
+                DoubleDownButton.IsEnabled = true;
+            } else
+            {
+                DoubleDownButton.IsEnabled = false;
             }
         }
 
@@ -234,7 +257,14 @@ namespace Blackjack
             //string folderPath = Environment.GetFolderPath(Environment.CurrentDirectory.(@"/CardImg/Heart/7_of_hearts.png"));
             string face = card[0];
             string number = card[1];
-            BitmapImage cardImage = new BitmapImage(new Uri(new Uri(Directory.GetCurrentDirectory(), UriKind.Absolute), new Uri($@"../../CardImg/{face}/{number}.png", UriKind.Relative)));
+            BitmapImage cardImage = new BitmapImage();
+            cardImage.BeginInit();
+            cardImage.UriSource = new Uri(new Uri(Directory.GetCurrentDirectory(), UriKind.Absolute), new Uri($@"../../CardImg/{face}/{number}.png", UriKind.Relative));
+            if (doubleDown)
+            {
+                cardImage.Rotation = Rotation.Rotate90;
+            }
+            cardImage.EndInit();
             return cardImage;
         }
 
@@ -389,7 +419,7 @@ namespace Blackjack
 
         private void CheckWhoWon()
         {
-            
+            doubleDown = false;
             hitButton.IsEnabled = false;
             standButton.IsEnabled = false;
             NewGameButton.IsEnabled = true;
@@ -397,6 +427,7 @@ namespace Blackjack
             winConditionLabel.Visibility = Visibility.Visible;
             hitButton.Visibility = Visibility.Collapsed;
             standButton.Visibility = Visibility.Collapsed;
+            DoubleDownButton.IsEnabled = false;
             if (playerPoints == computerPoints)
             {
                 winConditionLabel.Content = "PUSH!";
@@ -428,6 +459,7 @@ namespace Blackjack
                     betSlider.Visibility = Visibility.Visible;
                 }
             }
+            CheckIfDoubleDownPossible();
         }
 
         private bool CheckIfbroke()
@@ -545,6 +577,7 @@ namespace Blackjack
         {
             bet = Convert.ToInt32(betSlider.Value);
             betLabel.Content = bet;
+            CheckIfDoubleDownPossible();
         }
 
         
