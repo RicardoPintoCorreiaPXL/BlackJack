@@ -103,6 +103,11 @@ namespace Blackjack
             cardCountLabel.Text = Convert.ToString(deck.Count);
         }
 
+        /// <summary>
+        /// Start game button, everything gets resest from here
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
         {
             count = 0;

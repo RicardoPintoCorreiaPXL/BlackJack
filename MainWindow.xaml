@@ -83,7 +83,7 @@
                 <Viewbox MaxWidth="600" VerticalAlignment="top" HorizontalAlignment="Right">
                     <StackPanel>
                         <Border BorderBrush="Black" BorderThickness="4">
-                            <StackPanel MinHeight="250" Height="300" Width="250" HorizontalAlignment="Right" Background="Beige">
+                            <StackPanel MinHeight="320" Height="320" Width="auto" HorizontalAlignment="Center" Background="Beige">
                                 <Border Margin="20" BorderBrush="Black" BorderThickness="4">
                                     <TextBox x:Name="computerTextbox" Height="117" Width="200" Background="Wheat" FontFamily="Arial Black"></TextBox>
                                 </Border>
