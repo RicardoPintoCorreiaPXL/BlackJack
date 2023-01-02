@@ -31,6 +31,7 @@ namespace Blackjack
         private int playerPoints;
         private int computerPoints;
         private DispatcherTimer timer;
+        private DispatcherTimer timeKeeper;
         private bool playerGetsCard = false;
         private int count;
         private int kapitaal;
@@ -571,6 +572,20 @@ namespace Blackjack
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Tick += new EventHandler(Timer_Tick);
+            timeKeeper = new DispatcherTimer();
+            timeKeeper.Interval = new TimeSpan(0, 0, 1);
+            timeKeeper.Tick += new EventHandler(TimeKeep_Tick);
+            timeKeeper.Start();
+        }
+
+        private void TimeKeep_Tick(object sender, EventArgs e)
+        {
+            SetTime();
+        }
+
+        private void SetTime()
+        {
+            timeLabel.Content = $"{DateTime.Now.ToLongTimeString()}";
         }
 
         private void betSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
