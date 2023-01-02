@@ -9,9 +9,10 @@
     <Viewbox>
         <Grid MaxHeight="1920" MaxWidth="1920" Background="DarkGreen">
             <DockPanel>
-                <Label FontSize="20" Width="150" Height="40" DockPanel.Dock="Bottom" Content="" Name="timeLabel"></Label>
-                <Label DockPanel.Dock="Bottom" Content="" Name="historyLabel"></Label>
+                <Label FontSize="10" Width="150" Height="40" DockPanel.Dock="Bottom" Content="" Name="timeLabel"></Label>
+                <Button Background="Transparent" Margin="10" FontSize="30"  Height="50" Width="400" DockPanel.Dock="Bottom" Content="" Name="historyLabel" Click="historyLabel_Click"></Button>
                 <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" Height="auto" Width="auto">
+                    
                     <Viewbox MaxWidth="600" VerticalAlignment="Top" HorizontalAlignment="Left">
                         <StackPanel>
                             <Border BorderBrush="Black" BorderThickness="4">
@@ -107,6 +108,7 @@
                                 </Label>
                                 <Image Width="100" x:Name="deckImage" Height="118"/>
                             </WrapPanel>
+                            
                         </StackPanel>
                     </Viewbox>
                 </WrapPanel>

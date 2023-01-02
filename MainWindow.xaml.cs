@@ -26,6 +26,7 @@ namespace Blackjack
     {
         //private List<string> deck;
         private List<List<string>> deck;
+        private Queue<string> history;
         private Random rnd;
         private List<string> card;
         private int playerPoints;
@@ -37,6 +38,8 @@ namespace Blackjack
         private int kapitaal;
         private int bet;
         private bool doubleDown;
+        private int round;
+        HistoryObject status;
         public MainWindow()
         {
             InitializeComponent();
@@ -74,7 +77,7 @@ namespace Blackjack
             playerLabel.Content = 0;
             computerPoints = 0;
             commputerLabel.Content = 0;
-            
+            historyLabel.Content = "";
 
         }
 
@@ -114,6 +117,8 @@ namespace Blackjack
         {
             doubleDown = false;
             count = 0;
+            round = 0;
+            history.Clear();
             ClearBoard();
             BuildDeck();
             dealButton.IsEnabled = true;
@@ -142,10 +147,12 @@ namespace Blackjack
             NewGameButton.IsEnabled = true;
             NewGameButton.Visibility = Visibility.Visible;
 
+
         }
 
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
+            round++;
             doubleDown = false;
             betSlider.Visibility = Visibility.Collapsed;
             kapitaal = kapitaal - bet;
@@ -176,8 +183,18 @@ namespace Blackjack
             standButton.Visibility = Visibility.Visible;
             NewGameButton.IsEnabled = false;
             NewGameButton.Visibility = Visibility.Collapsed;
-            CheckIfDoubleDownPossible();
-            
+            CheckIfDoubleDownPossible(); 
+        }
+
+        private void historyLabel_Click(object sender, RoutedEventArgs e)
+        {
+            string rounds = "";
+            for (int i = history.Count - 1; i >= 0; i--)
+            {
+                rounds += history.ToArray().ToList()[i];
+                rounds += Environment.NewLine;
+            }
+            MessageBox.Show(rounds);
         }
 
         private void DoubleDownButton_Click(object sender, RoutedEventArgs e)
@@ -434,17 +451,14 @@ namespace Blackjack
                 winConditionLabel.Content = "PUSH!";
                 kapitaal = kapitaal + bet;
                 dealButton.IsEnabled = true;
-                SetKapitalValeu();
-                Slider();
                 betSlider.Visibility = Visibility.Visible;
             }
             else if (playerPoints > computerPoints && playerPoints < 22 || computerPoints > 21)
             {
                 winConditionLabel.Content = "WON!";
-                kapitaal = kapitaal + (bet + bet);
+                bet = bet + bet;
+                kapitaal = kapitaal + bet;
                 dealButton.IsEnabled = true;
-                SetKapitalValeu();
-                Slider();
                 betSlider.Visibility = Visibility.Visible;
             } else
             {
@@ -456,11 +470,24 @@ namespace Blackjack
                 {
                     dealButton.IsEnabled = true;
                     winConditionLabel.Content = "LOST";
-                    Slider();
                     betSlider.Visibility = Visibility.Visible;
                 }
             }
+            BuildHistoryList();
             CheckIfDoubleDownPossible();
+            SetKapitalValeu();
+            Slider();
+        }
+
+        private void BuildHistoryList()
+        {
+            if (history.Count == 10)
+            {
+                history.Dequeue();
+            }
+            status = new HistoryObject(round, bet, playerPoints, computerPoints);
+            historyLabel.Content = $"{status.count}: {status.bet} - {status.playerPoints}/{status.computerPoints}";
+            history.Enqueue($"{status.count}: {status.bet} - {status.playerPoints}/{status.computerPoints}");
         }
 
         private bool CheckIfbroke()
@@ -553,6 +580,7 @@ namespace Blackjack
             //"SpadeJJ", "SpadeQQ", "SpadeKK"};
             deck = new List<List<string>>(52) {};
             card = new List<string>(2);
+            history = new Queue<string>(10);
             //maak methode aan met dubbele for lussen om kaarten in list te steken
             //deck.Add(new List<string>(2) {"Spade", "Ace"});
             //deck[0][0];
