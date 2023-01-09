@@ -34,17 +34,29 @@ namespace Blackjack
         private DispatcherTimer timer;
         private DispatcherTimer timeKeeper;
         private bool playerGetsCard = false;
+        /// <summary>
+        /// count telt de aantal seconden
+        /// </summary>
         private int count;
         private int kapitaal;
         private int bet;
+        /// <summary>
+        /// is om te zien als het mogelijk om doubledown te doen
+        /// </summary>
         private bool doubleDown;
+        /// <summary>
+        /// houd de aantal ronded bij
+        /// </summary>
         private int round;
         HistoryObject status;
         public MainWindow()
         {
             InitializeComponent();
         }
-
+        
+        /// <summary>
+        /// dit zal het helebord leegmaken excl. te achterliggende waardes
+        /// </summary>
         private void EmptyBoard()
         {
             playerCardImage.Source = null;
@@ -59,7 +71,9 @@ namespace Blackjack
             computerCardImageNew.Source = null;
             computerCardImageFour.Source = null;
         }
-
+        /// <summary>
+        /// dit reset het bord naar begin positie en verwijdert achterliggende waardes
+        /// </summary>
         private void ClearBoard()
         {
             if (computerCardImageNew.Source != null)
@@ -80,7 +94,9 @@ namespace Blackjack
             historyLabel.Content = "";
 
         }
-
+        /// <summary>
+        /// het instellen van de kapitaal slider
+        /// </summary>
         private void Slider()
         {
             betSlider.TickFrequency = 1;
@@ -88,7 +104,10 @@ namespace Blackjack
             betSlider.Minimum = CheckMinimunSlider();
             betSlider.Value = bet;
         }
-
+        /// <summary>
+        /// set het minimum van de slider valeu
+        /// </summary>
+        /// <returns>10% van kapitaal</returns>
         private int CheckMinimunSlider()
         {
             double betValeu = kapitaal / 10;
@@ -96,7 +115,9 @@ namespace Blackjack
             betLabel.Content = bet;
             return bet;
         }
-
+        /// <summary>
+        /// dit gaat na of er wel genoeg kaarten zijn, anders zal hij alle kaarten er terug instoppen
+        /// </summary>
         private void CheckDeckCards()
         {
             
@@ -109,7 +130,7 @@ namespace Blackjack
         }
 
         /// <summary>
-        /// Start game button, everything gets resest from here
+        /// dit start het spel, hier word alles geset voor de deal knop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -134,13 +155,23 @@ namespace Blackjack
             
             
         }
+        /// <summary>
+        /// heeft exact 1 kaart aan de speler, bustcheck is om te kijken als men niet over 21 is gegaan
+        /// player statistics checked gaat alles na.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void hitButton_Click(object sender, RoutedEventArgs e)
         {
             GetCard();
             PlayerStatistics();
             bustCheck(playerPoints);
         }
-
+        /// <summary>
+        /// start de spelbuert van de bank/computer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void standButton_Click(object sender, RoutedEventArgs e)
         {
             computerPlays();
@@ -149,7 +180,12 @@ namespace Blackjack
 
 
         }
-
+        /// <summary>
+        /// de deal knop start te timer en dealt de kaarten uit, het bord word ook
+        /// gelcleared van de vorige game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dealButton_Click(object sender, RoutedEventArgs e)
         {
             round++;
@@ -185,7 +221,11 @@ namespace Blackjack
             NewGameButton.Visibility = Visibility.Collapsed;
             CheckIfDoubleDownPossible(); 
         }
-
+        /// <summary>
+        /// zet de voorbije 10 rondes in een messagebox voor te tonen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void historyLabel_Click(object sender, RoutedEventArgs e)
         {
             string rounds = "";
@@ -196,7 +236,11 @@ namespace Blackjack
             }
             MessageBox.Show(rounds);
         }
-
+        /// <summary>
+        /// een mix van hit en stand, geeft 1 kaart en eindigt de buert
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DoubleDownButton_Click(object sender, RoutedEventArgs e)
         {
             doubleDown = true;
@@ -208,7 +252,9 @@ namespace Blackjack
             NewGameButton.IsEnabled = true;
             NewGameButton.Visibility = Visibility.Visible;
         }
-
+        /// <summary>
+        /// bij double down, verdubbelt hij de bet
+        /// </summary>
         private void DoubleDownTheBet()
         {
             kapitaal = kapitaal - bet;
@@ -216,7 +262,9 @@ namespace Blackjack
             bet = bet + bet;
             betLabel.Content = bet;
         }
-
+        /// <summary>
+        /// hier checken we als doubledown mogelijk is
+        /// </summary>
         private void CheckIfDoubleDownPossible()
         {
             if (kapitaal > (bet + bet))
@@ -228,12 +276,18 @@ namespace Blackjack
                 DoubleDownButton.IsEnabled = false;
             }
         }
-
+        /// <summary>
+        /// toont de kapitalvaleu
+        /// </summary>
         private void SetKapitalValeu()
         {
             totalMoneyLabel.Content = kapitaal;
         }
-
+        /// <summary>
+        /// hier gaan we per seconde een kaart delen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
             GetCard();
@@ -249,7 +303,9 @@ namespace Blackjack
             count++;
             StopTimer();
         }
-
+        /// <summary>
+        /// bij het uitdelen van 4 kaarten gaan we deze timer stoppen
+        /// </summary>
         private void StopTimer()
         {
             if (count == 4)
@@ -259,13 +315,18 @@ namespace Blackjack
                 //MessageBox.Show("is four");
             }
         }
-
+        /// <summary>
+        /// plaatst  het deck op het bord
+        /// </summary>
         private void SetDeckBackground()
         {
             BitmapImage cardImage = new BitmapImage(new Uri(new Uri(Directory.GetCurrentDirectory(), UriKind.Absolute), new Uri($@"../../CardImg/CardCover/CardCover.png", UriKind.Relative)));
             deckImage.Source = cardImage;
         }
-
+        /// <summary>
+        /// dit haalt de juiste foto source uit de folders afhankelijk van de gespeelde kaart
+        /// </summary>
+        /// <returns>source van de foto</returns>
         private ImageSource GetCardImg()
         {
             // card.SetBinding();
@@ -285,7 +346,10 @@ namespace Blackjack
             cardImage.EndInit();
             return cardImage;
         }
-
+        /// <summary>
+        /// dit plaatst en schuift de fotos op het bord
+        /// </summary>
+        /// <param name="player"> is het de bank of speler waar we een kaart toevoegen</param>
         private void SetCardImg(int player)
         {
             //ADD A FITH PICTURE
@@ -353,7 +417,11 @@ namespace Blackjack
                     break;
             }
         }
-
+        /// <summary>
+        ///dit gaat de getrokken kaart in een textveld steken
+        /// daarna de punten berekenen
+        /// als laatse ssturen we de kaart info door met indidificatie dat het de speler is
+        /// </summary>
         private void PlayerStatistics()
         {
             playerTextbox.AppendText(GetCardName());
@@ -366,7 +434,10 @@ namespace Blackjack
             //playerCardImageThree.Source = GetCardImg();
             SetCardImg(1);
         } 
-
+        /// <summary>
+        /// zelfe als playerstatistics
+        /// maar nu sturen we door dat het de bank is
+        /// </summary>
         private void ComputerStatistics()
         {
             computerTextbox.AppendText(GetCardName());
@@ -376,7 +447,10 @@ namespace Blackjack
             //computerCardImage.Source = GetCardImg();
             SetCardImg(0);
         }
-
+        /// <summary>
+        /// dit haalt de benaming van de kaart
+        /// </summary>
+        /// <returns>returns face and valeu</returns>
         private string GetCardName()
         {
             string cardName = "";
@@ -386,7 +460,12 @@ namespace Blackjack
             }
             return cardName;
         }
-
+        /// <summary>
+        /// checked als de bank minder heeft dan 17
+        /// daarna gaan we een kaart trekken en deze tonen op het bord met statistics
+        /// voor de zekeheid checken we dat er niemand gebust is
+        /// anders checken we wie gewonnen heeft
+        /// </summary>
         private void computerPlays()
         {
             while (computerPoints < 17)
@@ -397,7 +476,10 @@ namespace Blackjack
             }
             CheckWhoWon();
         }
-
+        /// <summary>
+        /// hij kijken we als we niet boven de 21 zitten
+        /// </summary>
+        /// <param name="points">we vragen de putne op van wie we checken als hij erover is</param>
         private void bustCheck(int points)
         {
             if (points > 21)
@@ -405,7 +487,12 @@ namespace Blackjack
                 CheckWhoWon();
             }
         }
-
+        /// <summary>
+        /// hier kijken we hoeveel punten de speler of bank verdient heeft
+        /// </summary>
+        /// <param name="points">de al behaalde punten</param>
+        /// <param name="card">de getrokken kaart waarde</param>
+        /// <returns>nieuwe totale punten</returns>
         private int CalculationOfCards(int points, string card)
         {
             int value = 0;
@@ -434,7 +521,13 @@ namespace Blackjack
                     break;
             }
         }
-
+        /// <summary>
+        /// hier kijken we wie gewonnen heeft
+        /// we resetten ook het meesten en geven de optie om een nieuw game te starten
+        /// daarna za de nieuwe kapitaal berekent zijn.
+        /// we gaan ook deze ronde opslaan
+        /// de nieuwe kapital instellen en slider terug naar links zetten
+        /// </summary>
         private void CheckWhoWon()
         {
             doubleDown = false;
@@ -478,7 +571,10 @@ namespace Blackjack
             SetKapitalValeu();
             Slider();
         }
-
+        /// <summary>
+        /// hier ropen we de classe historyobject op, deze dient om de ronde op te slaan om daarna in een list te steken
+        /// queue zorgt voor een FIFO
+        /// </summary>
         private void BuildHistoryList()
         {
             if (history.Count == 10)
@@ -489,7 +585,10 @@ namespace Blackjack
             historyLabel.Content = $"{status.count}: {status.bet} - {status.playerPoints}/{status.computerPoints}";
             history.Enqueue($"{status.count}: {status.bet} - {status.playerPoints}/{status.computerPoints}");
         }
-
+        /// <summary>
+        /// hier gaan we kijken of we wel nog verder mogen spelen
+        /// </summary>
+        /// <returns>een ja of nee naarmate hoeveel we nog hebben</returns>
         private bool CheckIfbroke()
         {
             if (kapitaal == 0)
@@ -501,7 +600,9 @@ namespace Blackjack
                 return false;
             }
         }
-
+        /// <summary>
+        /// hier gaan we een random kaart uit het deck halen
+        /// </summary>
         private void GetCard()
         {
             if (!(card == null))
@@ -516,14 +617,19 @@ namespace Blackjack
 
             RemoveCard(rint);
         }
-
+        /// <summary>
+        /// de getrokken kaart verweideren we uit het deck
+        /// </summary>
+        /// <param name="card">de getrokken kaart</param>
         private void RemoveCard(int card)
         {
             deck.RemoveAt(card);
             //TestBuiltCardDeck();
             CheckDeckCards();
         }
-
+        /// <summary>
+        /// dit gaat het deck van 52 kaarten maken
+        /// </summary>
         private void BuildDeck()
         {
             if (!(deck == null))
@@ -561,6 +667,9 @@ namespace Blackjack
         }
 
         //Testing methode
+        /// <summary>
+        /// dit was gebruikt om te testen of wel degelijk alle kaarten gegenereerd werden
+        /// </summary>
         private void TestBuiltCardDeck()
         {
             string listOfCards = "";
@@ -573,7 +682,12 @@ namespace Blackjack
             }
             MessageBox.Show(listOfCards);
         }
-
+        /// <summary>
+        /// bij het inladen gaan we een paar dingen klaar zetten
+        /// lists declareren en timer starten voor local time
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //deck = new List<string>(52) { "Spade00", "Spade02", "Spade03", "Spade04", "Spade05", "Spade06", "Spade07", "Spade08", "Spade09", "Spade10",
@@ -594,7 +708,9 @@ namespace Blackjack
             SetDeckBackground();
         }
 
-        
+        /// <summary>
+        /// dit start de timer voor local time
+        /// </summary>
         private void Timer()
         {
             timer = new DispatcherTimer();
@@ -605,17 +721,27 @@ namespace Blackjack
             timeKeeper.Tick += new EventHandler(TimeKeep_Tick);
             timeKeeper.Start();
         }
-
+        /// <summary>
+        /// bepaalde wat hij per tick gaat doen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TimeKeep_Tick(object sender, EventArgs e)
         {
             SetTime();
         }
-
+        /// <summary>
+        /// elke seconde laat hij de tijd zien in de status balk
+        /// </summary>
         private void SetTime()
         {
             timeLabel.Content = $"{DateTime.Now.ToLongTimeString()}";
         }
-
+        /// <summary>
+        /// als de slider aangepast word dan zullen de valeus ook veranderen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void betSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             bet = Convert.ToInt32(betSlider.Value);
